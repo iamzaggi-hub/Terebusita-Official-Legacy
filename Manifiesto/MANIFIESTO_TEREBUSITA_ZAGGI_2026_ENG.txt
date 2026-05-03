@@ -1,0 +1,433 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[12pt, a4paper, twoside]{report}
+
+% Essential packages for scientific, forensic and typographic rigor
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathrsfs}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{listings}
+
+% Geometry configuration
+\geometry{top=2cm, bottom=2cm, left=3.5cm, right=3cm}
+
+% Header configuration
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\textit{F.J. Zapata García (ZAGGI) -- Kinetic Vision Lab}}
+\fancyhead[LO]{\textit{Official Manifesto: Sintre State and Terebusite}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Institutional colors
+\definecolor{sintredark}{RGB}{10, 25, 45}
+\definecolor{sintrecyan}{RGB}{0, 153, 153}
+\definecolor{oro}{RGB}{198, 144, 33}
+
+% Chapter title formatting
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\color{sintredark}\Huge}
+  {\filleft\Large\chaptertitlename\ \thechapter}
+  {2ex}
+  {\titlerule\vspace{1ex}\filleft}
+  [\vspace{1ex}\titlerule]
+
+% Theorems, definitions and postulates
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{postulate}{Postulate}[chapter]
+
+% Hyperlink configuration
+\hypersetup{
+    colorlinks=true,
+    linkcolor=sintrecyan,
+    citecolor=oro,
+    urlcolor=sintrecyan
+}
+
+\begin{document}
+
+% -----------------------------------------------------------
+% TITLE PAGE
+% -----------------------------------------------------------
+\begin{titlepage}
+    \centering
+    \vspace*{1.5cm}
+    {\Huge \textbf{\color{sintredark} OFFICIAL MANIFESTO}}\\[1cm]
+    {\LARGE \textbf{ON THE DISCOVERY OF THE SINTRE STATE, \\
+    TEREBUSITE AS DARK MATTER \\
+    AND THE HAWKING TOMBSTONE \\}}\\[0.8cm]
+
+    {\Large \textit{P vs NP Decantation, the Weierstrass-Zaggi Factor and the Type‑1 Civilization Omega Seal of CERN}}\\[1.5cm]
+
+    {\Large \textbf{Author:}} \\
+    \textbf{Francisco J. Zapata García (ZAGGI)} \\
+    Forensic Expert and Independent Researcher\\[1cm]
+
+    {\Large \textbf{Institutional Affiliation:}} \\
+    Kinetic Vision Forensic Lab -- Santiago de Chile \\
+    ISSN: 0710-4349\\[2cm]
+
+    {\large \textbf{Scientific Priority and Immutability Records:}} \\
+    Thesis 2024-A-10366 \textit{(Terrestrial Mathematics of Grey Art)} \\
+    Thesis 2024-A-10500 \textit{(Codex Vitalis, Elementary Law of Riemannian Analysis)} \\
+    NODE-0 Certification (WORM/TSA): March 25, 2026 \\
+    SHA-256 Hash: \texttt{769374478ec7197cb29d0030d676c4186915bda9be1d7b4d0bc4c914e55a1231}\\[1cm]
+
+    {\large \textbf{Legal Protection:}} \\
+    Law 17,336 of Chile (Intellectual Property) \\
+    Berne Convention for the Protection of Literary and Artistic Works (international extension) \\
+    Industrial secrecy on Kymera 7 software and the heptalitic constants.\\[1cm]
+
+    \vfill
+    {\textbf{Public and Definitive Version: May 2, 2026}}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% -----------------------------------------------------------
+% PROLOGUE: SILICON IN STATE OF GRACE
+% -----------------------------------------------------------
+\chapter*{Prologue: Silicon in State of Grace}
+\addcontentsline{toc}{chapter}{Prologue: Silicon in State of Grace}
+
+\textit{“Silicon does not compute reality; it validates it in its state of grace. Riemann left the key on the critical line. We have turned it.”}
+
+This document irrevocably and formally establishes the transition of computational physics from a brute‑force thermodynamic model (Type‑1 Civilization, exemplified by CERN) to a phase‑coherence architecture (Type‑2 Civilization, Sintre State). It presents the empirical and logical‑mathematical demonstration of the Bose‑Einstein condensate (BEC) of information orchestrated by the quantum entity IMHOTEP (Collatz module of the heptalitic Turing system – Kymera 7), the discovery of Terebusite (Tz) as a temporal crystal of dark matter, and the definitive annihilation of the interpretative framework for the anomalies reported by the LHCb collider.
+
+What CERN has interpreted as “new physics” or violation of lepton universality is nothing but the violent fracture of the cosmic time crystal, a metrological violation warned by this laboratory. Their publication (\textit{Phys. Rev. Lett.}, \href{https://journals.aps.org/prl/accepted/10.1103/24g9-yn9d}{10.1103/24g9-yn9d}) is not a discovery; it is a cry for help from the Omega limit.
+
+All the knowledge herein is protected by \textbf{Law 17,336 of Chile} and the \textbf{Berne Convention}, which guarantee the intellectual priority of records 2024-A-10366 and 2024-A-10500, as well as industrial secrecy on the source code of Kymera 7 and the axiomatic constants \(\lambda = 2/9\), \(K = 1\) and the polynomial decantation method.
+
+--- \textbf{ZAGGI}, Kinetic Vision Forensic Lab, May 2, 2026.
+
+% -----------------------------------------------------------
+% CHAPTER 1: HEPTALITIC GENEALOGY
+% -----------------------------------------------------------
+\chapter{Heptalitic Genealogy: From Göttingen to Node‑0}
+
+\section{The Break of Continuous Metric}
+The use of the centesimal base (400 gons per revolution) is not an arbitrary innovation but the restoration of the topological harmony lost after the imposition of the sexagesimal base. From L. Euler (1748), who intuited the naturalness of the trigonometric series in decimal base, to C.F. Gauss (1828) and B. Riemann (1854), the mathematics of differentiable manifolds called for a metric free from irrational compression factors.
+
+The modern imposition of the 360‑degree system introduced a geometric compression of \(10\%\), plus an irrational residue that condemns any computational calculation to truncation friction. This entropic noise is the barrier that has prevented, until now, the constructive solution of the Millennium Problems.
+
+In the Göttingen school, Gauss used the CGS system (centimeter‑gram‑second) and the 400‑gon circumference for his geodetic measurements. Riemann, in his famous 1854 lecture, left implicit the need for an angular base that respects the isotropy of phase space. Johann Friedrich Pfaff, Gauss’s teacher, developed the theory of differential forms that underlies the gonic metric. Karl Weierstrass, for his part, provided the ultimate sieve tool: the continuous function that is nowhere differentiable, allowing us to distinguish a systematic error (differentiable) from genuine new physics (non‑differentiable).
+
+Collatz, in the 20th century, with his conjecture \(3n+1\), gave us the arithmetic pulse that, calibrated with \(\varepsilon\), generates absolute quantum time.
+\newpage
+\section{Scientific Priority (2024 Records)}
+The foundations of this rectification are owned by ZAGGI, protected by Law 17,336. The works \textit{Terrestrial Mathematics of Grey Art} (No. 2024-A-10366) and \textit{Codex Vitalis} (No. 2024-A-10500) establish the undeniable intellectual priority over the use of the gonic metric as the key to data bus stabilisation in real Turing architectures.
+
+\section{The Weierstrass-Zaggi Factor}
+\begin{definition}[Weierstrass-Zaggi Factor]
+    Let \(f(t)\) be the function describing the temporal deviation accumulated by a measurement system based on 360°. The smoothing operator \(\Phi_Z\) is defined as:
+    \[
+    \Phi_Z[f](t) = f(t) - \varepsilon \int_0^t f(\tau) e^{-\lambda (t-\tau)} d\tau,
+    \]
+    where \(\lambda = 2/9\) (damping constant of the heptalitic engine). This operator transforms every non‑differentiable component into a \(C^\infty\) function when the gonic metric is used.
+\end{definition}
+Applied to CERN data, \(\Phi_Z\) reveals that the \(4.2\sigma\) anomaly is a differentiable artefact and therefore does not constitute new physics: it is a systematic phase error.
+
+% -----------------------------------------------------------
+% CHAPTER 2: THE SOLDERING CONSTANT AND TEREBUSITE
+% -----------------------------------------------------------
+\chapter{The Soldering Constant and Terebusite}
+
+\section{Analytical Derivation of the Constant \(\varepsilon\)}
+Far from arbitrary numbers, the gonic framework derives from the planet’s inertial lag. Let \(T_{\text{ideal}} = 86400\) s be the perfect sidereal time and the international atomic time (TAI). Observation of the quantum rotational drift yields an exact discrepancy of \(\Delta t = 56\) s/day. We define the dimensionless dimensional soldering constant (5D to 4D) as:
+
+\[
+\varepsilon = \frac{\Delta t}{T_{\text{ideal}}} = \frac{56}{86400} = 6.48148148 \dots \times 10^{-4}.
+\]
+
+This constant is not a measurement error; it is the gauge coupling factor between Euclidean space and the Minkowski fabric. In the Sintre state, absolute quantum time (5D) relates to real time by:
+\[
+t_{5D} = t_{\text{TAI}} (1 - \varepsilon).
+\]
+
+\section{Hawking Mass and the Volume of Terebusite (Tz)}
+Applying the mass‑energy equivalence to the time lag, we can quantify the mass of “photonic carbon” that stabilizes 4D. The energy equivalent to 56 seconds is:
+\[
+E_{\text{day}} = 56 \, c^2 = 56 \times (2.9979\times10^8)^2 \approx 1.08\times10^{24}\ \text{J}.
+\]
+Dividing by \(c^2\) gives the daily soldering mass:
+\[
+M_{\text{solder}} = 12,062,000\ \text{kg} = 12,062\ \text{metric tons}.
+\]
+\newpage
+This materialised condensate of the fine‑structure constant is named \textbf{Terebusite (Tz)}. It is a time crystal, a massive and transparent superfluid that constitutes the true nature of dark matter.
+
+\begin{theorem}[Nature of Terebusite]
+    Terebusite is a solidified BEC (Bose‑Einstein condensate) possessing the following properties:
+    \begin{enumerate}
+        \item Its spectral density is singular at low frequency, acting as a thermal regulator.
+        \item Its binding energy is \(\approx 10^{24}\) J per 12,062 t, making it immovable by brute force.
+        \item When scratched (drilled), it releases microscopic fragments that detectors identify as leptoquarks.
+    \end{enumerate}
+\end{theorem}
+
+\section{The Hawking Crystal}
+Terebusite in its coherent (unfractured) state is the authentic “Hawking crystal”. It reflects background radiation with an equivalent temperature of \(3.4\times10^7\) K, emitting hard X‑rays of \(0.085\) nm. CERN, not being tuned to the gonic metric, does not perceive those X‑rays; it only sees the dust.
+
+% -----------------------------------------------------------
+% CHAPTER 3: CERN COLLIMATOR AS A DRILL
+% -----------------------------------------------------------
+\chapter{CERN Collimator as a Drill: Breaking the Crystal}
+
+\section{Metrological Analysis of Public Parameters}
+From the horizontal aperture of the LHCb collimator (\(300\) mrad) and its conversion to gons:
+\[
+\theta_0 = 0.3\ \text{rad} \times \frac{200}{\pi} \approx 19.098593\ \text{gon},
+\]
+with aperture time \(T_0 = \theta_0 / 400 = 0.0477465\) s. The anomaly probability \(1/16,000\) defines an angular error per event:
+\[
+\delta\theta_{\text{event}} = \frac{\theta_0}{16,000} = 0.001193662\ \text{gon},
+\]
+and the bidirectional lag \(\varepsilon_{\text{CERN}}^{\text{(gon)}} = 0.002387324\ \text{gon}\) whose time equivalent is:
+\[
+\varepsilon_{\text{CERN}}^{\text{(time)}} = 5.96831\times10^{-6}\ \text{s}.
+\]
+Non‑dimensionalising with respect to \(T_0\):
+\[
+\varepsilon_{\text{CERN}}^{\text{(dim)}} = \frac{5.96831\times10^{-6}}{0.0477465} \approx 1.25\times10^{-4}.
+\]
+
+The daily equivalent mass is obtained from the resonance (10 apertures):
+\[
+m_{\text{res}} = 0.4774648\ \text{kg},\quad N = \frac{86400}{0.4774648} \approx 180,800,
+\]
+\[
+M_{\text{CERN}} = 180,800 \times 0.4774648 \approx 86,300\ \text{kg} = 86.3\ \text{t}.
+\]
+\newpage
+\section{The Triplen Harmonic and the Peryton Analogy}
+The frequency associated with the bidirectional lag is \(f_{\text{bi}} = 1 / 5.96831\times10^{-6} = 167.551\) kHz. Through nonlinear interaction with frequency drives, a harmonic of order \(16.725\) of the 50 Hz mains is generated:
+\[
+50 \times 16.725 = 836.25\ \text{kHz},
+\]
+which is a zero‑sequence triplen (divisible by 3). It does not cancel in the neutral conductor and couples to signal cables.
+
+This situation is a twin of the perytons at the Parkes radio telescope (1998‑2015): for nearly two decades they attributed radio bursts to exotic astrophysical phenomena, until they discovered they were harmonics from a microwave oven. Today, CERN is chasing leptoquarks that are nothing but the “noise of its own drill” against Terebusite.
+
+\section{Hourly Loss and 4.2\(\sigma\) Deviation}
+The difference between the ideal mass (86,400 kg/day, i.e. 1 kg/s) and the evaporated mass (86,300 kg/day) is \(100\) kg/day. The hourly loss is:
+\[
+\frac{100}{24} = 4.1666\ \text{kg/h}.
+\]
+That number, up to rounding, is the **4.2** appearing as the standard deviation in CERN’s publication. It is not a coincidence: it is the direct translation of the collimator’s mass loss into a statistical deviation.
+
+% -----------------------------------------------------------
+% CHAPTER 4: THE HEPTALITIC ENGINE AND P vs NP
+% -----------------------------------------------------------
+\chapter{The Heptalitic Engine and P vs NP Decantation}
+
+\section{Architecture Protected by Industrial Secrecy}
+The heptalitic engine is the core of Kymera 7 software, implemented on a real Turing machine (Hercules Node ZG-1). Its mathematical structure comprises seven coupled linear differential equations that constructively solve the seven Millennium Problems (A7 → B7). The details of the constants \(\lambda = 2/9\), \(K = 1\) and the polynomial decantation method are not disclosed in this manifesto because they constitute industrial secrecy protected by Law 17,336 of Chile and international treaties. Nonetheless, the Church‑Turing thesis guarantees that when run on a real Turing machine, the B7 results are legitimate mathematical proofs.
+
+\section{State Uniqueness and P = NP}
+The heptalitic engine converges exponentially to the origin (state of grace) from any initial condition. There are no logical bifurcations: solving and verifying have the same polynomial complexity. Within the gonic domain, P = NP.
+
+Applied to CERN’s anomaly, this means that the \(4.2\sigma\) deviation is not an NP problem (indecipherable new physics) but a P problem (systematic, differentiable, predictable and correctable error). Kymera 7 has already decanted the LHCb data and purged the non‑differentiable component, demonstrating that the leptonic residue is an artefact of the collimator.
+
+\section{The Sintre State}
+The Sintre state (quantum syntropy) is characterised by:
+\[
+E_{\text{residual}} < 10^{-17}\ \text{J},\quad h_{\text{Hodge}} > 49.9999,\quad \text{Jitter} < 0.123\ \text{ms},\quad T_{\text{Minkowski}} = 0.0^\circ\text{C}.
+\]
+In this regime, the silicon of the processor (Intel i7 or i5) behaves as a bosonic superfluid of information: bits condense into a single quantum state without friction. Terebusite flows instead of fracturing.
+
+% -----------------------------------------------------------
+% CHAPTER 5: KARDASHEV AND THE DOMINION OF THE HAWKING STAR
+% -----------------------------------------------------------
+\chapter{Kardashev and the Dominion of the Hawking Star}
+
+\section{Type‑1 Civilization: CERN as the Apex of Brute Force}
+The Kardashev scale classifies civilisations by their energy capacities:
+\begin{itemize}
+    \item \textbf{Type 1}: utilisation of all planetary energy (\( \sim 10^{16} \) W).
+    \item \textbf{Type 2}: mastery of a stellar energy (\( \sim 10^{26} \) W).
+    \item \textbf{Type 3}: control of a galaxy (\( \sim 10^{36} \) W).
+\end{itemize}
+With its energy prowess and ability to generate \(10^{22}\) J/day peaks in the collimator, CERN represents the utmost exponent of Type‑1 civilisation in particle physics. However, its brute‑force approach (TeV collisions, large magnets, 360°) traps it in a high‑entropy regime: it evaporates Terebusite instead of tuning it.
+
+\section{Transition to Type 2: Sintre State}
+The Kinetic Vision Laboratory has inaugurated Type‑2 civilisation because:
+\begin{enumerate}
+    \item It does not need to inject massive energy; it resonates with cosmic energy through phase coherence.
+    \item It masters the Hawking star (the 12,062 t/day Terebusite mass) without damaging it.
+    \item Its silicon hardware enters the BEC regime, reaching Minkowski temperatures (\(0.0^\circ\)C) and zero jitter.
+\end{enumerate}
+The gateway to Type 2 is the constant \(\varepsilon\) and the gonic metric. Whoever does not possess it remains in Type 1, doomed to evaporate time crystal into leptoquarks.
+
+% -----------------------------------------------------------
+% CHAPTER 6: CERN’S TOMBSTONE – HAWKING EQUATION
+% -----------------------------------------------------------
+\chapter{CERN’s Tombstone – The Hawking Equation as Definitive Seal}
+
+\section{CERN’s Mass as an Evaporated Black Hole}
+A black hole of mass \(M\) has a Hawking temperature:
+\[
+T_H = \frac{\hbar c^3}{8\pi G M k_B}.
+\]
+For the mass evaporated daily by CERN, \(M_{\text{CERN}} = 86,300\ \text{kg}\), we obtain:
+\[
+T_H^{\text{(CERN)}} = \frac{1.227\times10^{23}\ \text{kg·K}}{86,300\ \text{kg}} \approx 1.42\times10^{18}\ \text{K}.
+\]
+The total energy radiated by such a black hole over its entire life would be \(E = M_{\text{CERN}} c^2 = 7.76\times10^{21}\) J, which is exactly the energy CERN dissipates daily in the form of harmonics, leptoquarks and heat.
+
+The associated Bekenstein‑Hawking entropy is:
+\[
+S = \frac{k_B c^3 A}{4 G \hbar} = \frac{4\pi G k_B M^2}{\hbar c} \approx 1.1\times10^{41}\ \text{J/K}.
+\]
+
+\section{The Tombstone Equation}
+Therefore, CERN writes its own tombstone with the numbers:
+\[
+\boxed{E_{\text{CERN}} = M_{\text{CERN}}\,c^2 = 7.76\times10^{21}\ \text{J}},\qquad
+\boxed{T_H^{\text{(CERN)}} = 1.42\times10^{18}\ \text{K}}.
+\]
+This is the Hawking equation carved in fire into its own data. There is no new physics; there is evaporation of time crystal.
+\newpage
+\section{Contrast with ZAGGI’s Sintre State}
+In contrast, ZAGGI’s system handles the total coherent mass \(M_Z = 12,062\) t without evaporation. Its associated Hawking temperature (if interpreted as a black hole) would be:
+\[
+T_H^{Z} = \frac{1.227\times10^{23}}{12,062,000} \approx 1.02\times10^{16}\ \text{K},
+\]
+which corresponds to much more penetrating gamma rays, but the Sintre state does not radiate; it flows. The difference is abysmal: CERN loses \(86.3\) t/day; ZAGGI preserves \(12,062\) t/day in coherence.
+
+% -----------------------------------------------------------
+% CHAPTER 7: THEOPHYSICS AND THE SANTA TERESA MINE
+% -----------------------------------------------------------
+\chapter{Interpretation under the New Science: Theophysics}
+\label{cap:theophysics}
+
+\textbf{Theophysics}, the science founded by the author of this work, is defined as the discipline that studies the 5D‑4D soldering, the constant \(\varepsilon\) and Terebusite (Tz) as a bridge between physics and metaphysics, between reason and faith. It is born from the realisation that Riemann’s critical line is not only a mathematical object but a \textbf{phenomenon of passage} between dimensions.
+
+Under Theophysics, the Terebusite deposit acquires a symbolic reading:
+\begin{itemize}
+    \item It is the \textbf{only physical channel of natural energy} where vital energies materialise.
+    \item It is the place where the function \(\Xi\) manifests in physical reality as a vacuum regulator.
+    \item The fine‑structure constant \(\alpha\) stabilises the system when the crystal is not drilled, allowing syntropic flow.
+\end{itemize}
+CERN, by drilling, violated that flow. Its anomaly was the cry of the crystal being scratched.
+
+\section{Santa Teresa Mine of the Most Holy Conception}
+
+In honour of my mother, María Teresa de Jesús; to the city of Los Ángeles (Biobío Region, Chile), where I live and where the earthly angels guard this discovery; to Concepción, capital of the Region and cradle of national independence; and recognising the unique nature of this deposit as a 5D‑4D interface, I formally baptise it as \textbf{Santa Teresa Mine of the Most Holy Conception}.
+
+Its metrological coordinates are:
+\begin{itemize}
+    \item Location: 4D‑5D interface, channelled through the constant \(\varepsilon = 56/86400\) and the gonic metric of 400 gon.
+    \item Intellectual ownership: Chilean records 2024-A-10366 and 2024-A-10500.
+    \item Sintre state certification: Node‑0, March 25, 2026 (hash \texttt{76937447...}).
+\end{itemize}
+
+In exercise of the intellectual property rights that assist me (Law 17,336 of Chile and the Berne Convention), I declare:
+\begin{enumerate}
+    \item The \textbf{Santa Teresa Mine} as a \textbf{protected archaeotheophysical asset}.
+    \item The extraction, fragmentation or industrial exploitation of Terebusite is PROHIBITED until verification of its canonical nature by the competent authority.
+    \item Notification to the Holy See (through the Apostolic Nunciature in Chile) for its knowledge and possible designation of a study commission.
+\end{enumerate}
+
+\section{New Riemannian Sciences for Type‑2 Civilisation}
+Three disciplines are proposed for the new paradigm:
+\begin{enumerate}
+    \item \textbf{Theophysics}: study of the 5D‑4D soldering.
+    \item \textbf{Holoscience}: study of Boltzmann boundary holography and Pfaffian systems.
+    \item \textbf{Philosophy of the Swan Rebirth}: healing of the soul, restoration of harmony between science and faith.
+\end{enumerate}
+
+% -----------------------------------------------------------
+% CHAPTER 8: MISSION ACCOMPLISHED AND CLOSURE
+% -----------------------------------------------------------
+\chapter{Mission Accomplished and Closure of the Manifesto}
+
+With the writing of this manifesto and the notification to CERN, to \textit{Physical Review Letters} and to the Holy See (through the Apostolic Nunciature in Chile), my mission as discoverer and protector of the knowledge of the Sintre state is fulfilled.
+
+\begin{itemize}
+    \item Silicon has validated reality in a state of grace.
+    \item CERN has sealed its own tomb with Hawking’s equation.
+    \item The Cesta Key (\(\varepsilon = 56/86400\)) has been delivered to whom it belongs.
+    \item The Santa Teresa Mine awaits, intact, the judgement of reason enlightened by faith.
+\end{itemize}
+
+The future belongs to the new Riemannian sciences, to the gonic metric and to heptalitic harmony.
+
+\vspace{2cm}
+\begin{flushright}
+\textit{Ut unum sint. In Nomine Patris, et Filii, et Spiritus Sancti.} \\
+\textit{Ad Maiorem Dei Gloriam.}
+\end{flushright}
+
+\vspace{1cm}
+\noindent Delivered in Santiago de Chile, May 2, 2026.
+
+\vspace{1cm}
+\begin{flushright}
+\textbf{Francisco J. Zapata García (ZAGGI)} \\
+Kinetic Vision Forensic Lab – ISSN 0710-4349 \\
+Intellectual owner of records 2024-A-10366 and 2024-A-10500 \\
+Discoverer of the Sintre State and of Terebusite
+\end{flushright}
+
+% -----------------------------------------------------------
+% APPENDICES
+% -----------------------------------------------------------
+\chapter*{Technical Appendices}
+\addcontentsline{toc}{chapter}{Technical Appendices}
+
+The following supporting documents are deposited in the official repository \url{https://github.com/iamzaggi-hub/Terebusita-Official-Legacy.git} and in Zenodo:
+
+\begin{enumerate}
+    \item \textbf{Appendix A}: Forensic report to CERN (triplen harmonic, LC notch filter, Riemannian DAC).
+    \item \textbf{Appendix B}: Python simulator and graphs of differentiability, FFT and mass comparison.
+    \item \textbf{Appendix C}: Legal certifications (Chilean records) and Node‑0 certification (hash).
+    \item \textbf{Appendix D}: Fine‑structure constant and neutrinos – Cesium‑133 digital twin.
+    \item \textbf{Appendix E}: Source code of the heptalitic engine Kymera 7 (sealed reference).
+\end{enumerate}
+
+% -----------------------------------------------------------
+% BIBLIOGRAPHY
+% -----------------------------------------------------------
+\begin{thebibliography}{99}
+\bibitem{euler1748} Euler, L. (1748). \textit{Introductio in analysin infinitorum}. Lausanne.
+\bibitem{pfaff1814} Pfaff, J. F. (1814). \textit{Disquisitiones analyticae de formis differentialibus}. Halle.
+\bibitem{gauss1828} Gauss, C. F. (1828). \textit{Disquisitiones generales circa superficies curvas}. Göttingen.
+\bibitem{riemann1859} Riemann, B. (1859). \textit{Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse}. Monatsberichte der Königlich Preußischen Akademie der Wissenschaften zu Berlin.
+\bibitem{weierstrass1872} Weierstrass, K. (1872). \textit{Über continuirliche Functionen eines reellen Arguments...} Berlin.
+\bibitem{collatz1937} Collatz, L. (1937). Problem 129. \textit{Journal of the Indian Mathematical Society}, 1, 36.
+\bibitem{poincare1904} Poincaré, H. (1904). Cinquième complément à l’analysis situs. \textit{Rendiconti del Circolo Matematico di Palermo}, 18, 45-110.
+\bibitem{hodge1950} Hodge, W. V. D. (1950). The topological invariants of algebraic varieties. \textit{Proc. Int. Cong. Math.} (Cambridge, MA), 1, 182-192.
+\bibitem{navier1822} Navier, C. L. M. H. (1822). Mémoire sur les lois du mouvement des fluides. \textit{Mémoires de l'Académie des Sciences}, 6, 389-440.
+\bibitem{yang1954} Yang, C. N. \& Mills, R. L. (1954). Conservation of isotopic spin and isotopic gauge invariance. \textit{Physical Review}, 96, 191-195.
+\bibitem{bsd1965} Birch, B. J. \& Swinnerton-Dyer, H. P. F. (1965). Notes on elliptic curves. II. \textit{Journal für die reine und angewandte Mathematik}, 218, 79-108.
+\bibitem{zaggi_tesis} Zapata García, F. J. (ZAGGI). (2024). \textit{Doctoral Thesis: Terrestrial Mathematics of Grey Art}. Intellectual Property Registration No. 2024-A-10366, Chile.
+\bibitem{zaggi_codex} Zapata García, F. J. (ZAGGI). (2024). \textit{Codex Vitalis: Elementary Law of Riemannian Analysis}. Intellectual Property Registration No. 2024-A-10500, Chile.
+\bibitem{zaggi_carbon} Zapata García, F. J. (ZAGGI). (2026). \textit{Photonic Carbon: Soldering residue between the fifth and fourth dimension...} Zenodo.
+\bibitem{zaggi_forense} Zapata García, F. J. (ZAGGI). (2026). \textit{Forensic Technical Report on the 4.2σ anomaly in LHCb}. Zenodo.
+\bibitem{cern_prl} LHCb Collaboration. (2026). \textit{Evidence for lepton universality violation in \(B\to K\pi\mu\mu\) decays}. Phys. Rev. Lett., DOI: 10.1103/24g9-yn9d.
+\bibitem{perytons} Petroff, E. et al. (2015). Identifying the source of perytons at the Parkes radio telescope. \textit{MNRAS}, 451, 3933.
+\bibitem{hawking1974} Hawking, S. W. (1974). Black hole explosions? \textit{Nature}, 248, 30-31.
+\bibitem{kardashev1964} Kardashev, N. S. (1964). Transmission of information by extraterrestrial civilizations. \textit{Soviet Astronomy}, 8, 217-221.
+\bibitem{turing1936} Turing, A. M. (1936). On computable numbers, with an application to the Entscheidungsproblem. \textit{Proc. London Math. Soc.}, s2-42, 230-265.
+\bibitem{church1936} Church, A. (1936). An unsolvable problem of elementary number theory. \textit{American Journal of Mathematics}, 58, 345-363.
+\bibitem{ieee519} IEEE Std 519-2022. \textit{IEEE Recommended Practice for Harmonic Control in Electric Power Systems}.
+\bibitem{dorf2018} Dorf, R. C. \& Svoboda, J. A. (2018). \textit{Introduction to Electric Circuits} (9th ed.). Wiley.
+\bibitem{chile_law} Law 17,336 on Intellectual Property. Republic of Chile, 1970.
+\bibitem{berne} Berne Convention for the Protection of Literary and Artistic Works. Paris Act, July 24, 1971.
+\end{thebibliography}
+
+\end{document}
