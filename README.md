@@ -1,4 +1,4 @@
-Zenodo record (Manifiesto completo): 10.5281/zenodo.19997671
+Zenodo record (DOI): 10.5281/zenodo.19997671
 
 # ⚜️ TEREBUSITA – OFFICIAL LEGACY ⚜️  
 ### Descubrimiento del estado Sintre, la materia oscura cristalina y la lápida de Hawking para el CERN
