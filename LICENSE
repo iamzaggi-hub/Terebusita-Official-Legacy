@@ -1,21 +1,19 @@
-MIT License
+Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 
-Copyright (c) 2026 ZAGGI
+Copyright (c) 2026 Francisco J. Zapata García (ZAGGI)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This work (including all texts, images, code, and any other material contained in this repository) is protected by the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+You are free to:
+- Share — copy and redistribute the material in any medium or format.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Under the following terms:
+- Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+- NonCommercial — You may not use the material for commercial or industrial purposes.
+- NoDerivatives — If you remix, transform, or build upon the material, you may not distribute the modified material.
+
+Additionally, any extraction, fragmentation, or commercial exploitation of the theoretical concept "Terebusite" (photonic carbon, Hawking crystal) is strictly prohibited without the express written permission of the author. The source code of the heptalitic engine Kymera 7 and the axiomatic constants (λ = 2/9, K = 1, ε = 56/86400) are industrial secrets protected by Law 17,336 of Chile and the Berne Convention.
+
+For any use beyond the terms of this license (including academic collaborations or verification experiments), please contact the author at iamzaggi@gmail.com.
+
+Full license text: https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode
