@@ -1,5 +1,3 @@
-https://doi.org/10.5281/zenodo.19997671
-
 Zenodo record (DOI): 10.5281/zenodo.19997671
 
 # ⚜️ TEREBUSITE – OFFICIAL LEGACY ⚜️  
