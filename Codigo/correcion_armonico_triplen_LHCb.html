@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>LHCb Forensic Monitor - ZAGGI (C) 2026</title>
+    <style>
+        body { background: #050505; color: #00ff41; font-family: 'Courier New', monospace; display: flex; flex-direction: column; align-items: center; padding: 10px; }
+        .main-container { display: flex; gap: 15px; width: 1000px; }
+        .canvas-box { border: 2px solid #00ff41; background: #000; position: relative; }
+        .dashboard { width: 1000px; background: #111; padding: 20px; border: 1px solid #333; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10px; }
+        .control-panel { display: flex; flex-direction: column; gap: 8px; }
+        .log-panel { background: #000; border: 1px solid #00ff41; padding: 10px; font-size: 0.8em; height: 180px; overflow-y: hidden; }
+        h1 { color: #fff; font-size: 1.1em; text-transform: uppercase; margin-bottom: 5px; }
+        button { background: #1a1a1d; color: #00ff41; border: 1px solid #00ff41; padding: 10px; cursor: pointer; text-align: left; font-family: 'Courier New'; font-size: 0.85em; }
+        button:hover { background: #00ff41; color: #000; }
+        button.active { background: #00ff41; color: #000; }
+        .stat-line { font-size: 0.85em; margin-bottom: 4px; }
+        .danger { color: #ff3333; }
+        .warning { color: #ffcc00; }
+        .license { margin-top: 15px; font-size: 0.7em; color: #555; text-align: center; line-height: 1.4; }
+    </style>
+</head>
+<body>
+
+    <h1>📡 LHCb ANOMALY FORENSICS - CASE: 4.2σ</h1>
+
+    <div class="main-container">
+        <div class="canvas-box">
+            <div style="position:absolute; top:5px; left:10px; font-size:0.7em;">NEUTRAL CURRENT SPECTRUM (836.25 kHz)</div>
+            <canvas id="scope" width="490" height="280"></canvas>
+        </div>
+        <div class="canvas-box">
+            <div style="position:absolute; top:5px; left:10px; font-size:0.7em;">B-MESON MASS PEAK (LHCb DATA)</div>
+            <canvas id="histogram" width="490" height="280"></canvas>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <div class="control-panel">
+            <button id="btn-0" class="active" onclick="setStep(0)">[1] DETECTAR ARMÓNICO 16,725</button>
+            <button id="btn-1" onclick="setStep(1)">[2] APLICAR FILTRO LC NOTCH (836 kHz)</button>
+            <button id="btn-2" onclick="setStep(2)">[3] DAC RIEMANNIANO (BASE 400 GON)</button>
+
+            <div class="stat-line" style="margin-top:10px;">
+                SIGNIFICANCIA: <span id="sigma-val" class="danger">4.21 σ</span><br>
+                ERROR DE FASE: <span id="phase-val" class="danger">5.968 µs</span><br>
+                CONSTANTE ε: <span id="eps-val" class="danger">0.002387324</span>
+            </div>
+        </div>
+
+        <div class="log-panel" id="logs">
+            [SISTEMA LISTO]<br>
+            > Analizando datos de Physical Review Letters...<br>
+            > <span class="danger">ALERTA: Tensión detectada en el canal B → Kπµµ.</span>
+        </div>
+    </div>
+
+    <div class="license">
+        <strong>USO DEMOSTRATIVO - NO AUTORIZA USO COMERCIAL SIN LICENCIA ZAGGI (C) 2026</strong><br>
+        PROPIEDAD INTELECTUAL: FRANCISCO J. ZAPATA GARCÍA - KINETIC VISION FORENSIC LAB<br>
+        REGISTROS: 2024-A-10366 / 2024-A-10500
+    </div>
+
+<script>
+    const sCanvas = document.getElementById('scope');
+    const hCanvas = document.getElementById('histogram');
+    const sCtx = sCanvas.getContext('2d');
+    const hCtx = hCanvas.getContext('2d');
+    const logs = document.getElementById('logs');
+
+    let step = 0;
+    let anim = 0;
+
+    function addLog(msg, color="#00ff41") {
+        const div = document.createElement('div');
+        div.style.color = color;
+        div.innerHTML = `> ${msg}`;
+        logs.prepend(div);
+    }
+
+    function setStep(s) {
+        step = s;
+        document.querySelectorAll('button').forEach((b, i) => b.className = i === s ? 'active' : '');
+
+        const sig = document.getElementById('sigma-val');
+        const pha = document.getElementById('phase-val');
+        const eps = document.getElementById('eps-val');
+
+        if(s === 0) {
+            addLog("ARMÓNICO TRIPLEN DETECTADO: Orden 16,725 en el Neutro.", "#ff3333");
+            sig.innerText = "4.21 σ"; sig.className = "danger";
+            pha.innerText = "5.968 µs"; pha.className = "danger";
+            eps.innerText = "0.002387324"; eps.className = "danger";
+        } else if(s === 1) {
+            addLog("FILTRO LC INSTALADO: L=150µH, C=241pF.", "#ffcc00");
+            addLog("Atenuación: > 27 dB en frecuencia portadora.", "#ffcc00");
+            sig.innerText = "2.10 σ"; sig.className = "warning";
+            pha.innerText = "1.250 µs (Residual)"; pha.className = "warning";
+        } else if(s === 2) {
+            addLog("DAC RIEMANNIANO SINCRONIZADO: Base m´etrica 400 gon.", "#00ff41");
+            addLog("Estado de gracia alcanzado. Anomalía resuelta.", "#00ff41");
+            sig.innerText = "0.04 σ (Fondo)"; sig.className = "";
+            pha.innerText = "0.000 µs"; pha.className = "";
+            eps.innerText = "COMPENSADA"; eps.className = "";
+        }
+    }
+
+    function render() {
+        // Scope
+        sCtx.fillStyle = 'rgba(0,0,0,0.2)';
+        sCtx.fillRect(0,0,500,300);
+        sCtx.beginPath();
+        sCtx.strokeStyle = step === 0 ? '#ff3333' : (step === 1 ? '#ffcc00' : '#00ff41');
+        for(let x=0; x<500; x++) {
+            let noise = step === 0 ? (Math.random()-0.5)*40 : (step === 1 ? (Math.random()-0.5)*8 : 0);
+            let y = 140 + Math.sin(x/40 + anim)*60 + noise;
+            if(x===0) sCtx.moveTo(x,y); else sCtx.lineTo(x,y);
+        }
+        sCtx.stroke();
+
+        // Histogram
+        hCtx.fillStyle = '#000';
+        hCtx.fillRect(0,0,500,300);
+        hCtx.strokeStyle = '#222';
+        for(let i=0; i<500; i+=50) { hCtx.moveTo(i,0); hCtx.lineTo(i,300); hCtx.moveTo(0,i); hCtx.lineTo(500,i); }
+        hCtx.stroke();
+
+        hCtx.beginPath();
+        hCtx.lineWidth = 2;
+        let mu = step === 0 ? 330 : (step === 1 ? 290 : 250); // Desplazamiento real
+        let w = step === 0 ? 60 : (step === 1 ? 35 : 18);
+        hCtx.strokeStyle = step === 0 ? '#ff3333' : (step === 1 ? '#ffcc00' : '#00ff41');
+        for(let x=0; x<500; x++) {
+            let y = Math.exp(-Math.pow(x - mu, 2) / (2 * Math.pow(w, 2))) * 180;
+            if(x===0) hCtx.moveTo(x, 250 - y); else hCtx.lineTo(x, 250 - y);
+        }
+        hCtx.stroke();
+
+        anim += 0.06;
+        requestAnimationFrame(render);
+    }
+    render();
+</script>
+</body>
+</html>

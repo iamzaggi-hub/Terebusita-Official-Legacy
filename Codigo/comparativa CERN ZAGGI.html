@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ZAGGI: Simulador de Masa de Hawking y Estado SINTRE</title>
+    <style>
+        body { background: #050508; color: #00ff41; font-family: 'Courier New', monospace; display: flex; flex-direction: column; align-items: center; padding: 10px; overflow-x: hidden; }
+        .main-container { width: 1100px; display: flex; flex-direction: column; gap: 15px; }
+        .header { text-align: center; border-bottom: 2px solid #00ff41; padding-bottom: 10px; margin-bottom: 10px; }
+        .grid-visuals { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .canvas-box { border: 2px solid #333; background: #000; position: relative; border-radius: 8px; overflow: hidden; }
+        .canvas-box.active { border-color: #00ff41; box-shadow: 0 0 20px rgba(0,255,65,0.4); }
+        .dashboard { background: #111; padding: 20px; border: 1px solid #333; display: grid; grid-template-columns: 1fr 1.2fr; gap: 20px; }
+        .control-panel { display: flex; flex-direction: column; gap: 12px; }
+        .log-panel { background: #000; border: 1px solid #00ff41; padding: 12px; font-size: 0.85em; height: 250px; overflow-y: hidden; color: #00ff41; box-shadow: inset 0 0 10px #00ff4133; }
+        button { background: #1a1a1d; color: #00ff41; border: 1px solid #00ff41; padding: 15px; cursor: pointer; text-align: left; font-weight: bold; font-size: 0.9em; transition: 0.3s; }
+        button:hover { background: #00ff41; color: #000; }
+        button.active { background: #00ff41; color: #000; }
+        .gauge-container { margin-top: 15px; padding: 10px; border-top: 1px solid #333; }
+        .gauge-label { font-size: 0.8em; color: #888; text-transform: uppercase; }
+        .gauge-value { font-size: 1.4em; font-weight: bold; margin-bottom: 5px; }
+        .danger { color: #ff3333; }
+        .success { color: #00ff41; }
+        .warning { color: #ffcc00; }
+        .license-footer { margin-top: 20px; font-size: 0.7em; color: #444; text-align: center; line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="header">
+            <h1>NODUS HERCULES ZG-1: KYMERA 7 OPERATIONAL MONITOR</h1>
+            <div style="font-size: 0.8em; color: #888;">FASE: AUDITORÍA FORENSE LHCb | CONSTANTE ε_CERN: 0.002387324</div>
+        </div>
+
+        <div class="grid-visuals">
+            <!-- Monitor de Masa de Hawking -->
+            <div class="canvas-box" id="box-hawking">
+                <div style="position:absolute; top:8px; left:10px; font-size:0.7em; z-index:10; background:rgba(0,0,0,0.7);">ARRASTE PRIMORDIAL: MASA DE HAWKING</div>
+                <canvas id="hawking-canvas" width="540" height="320"></canvas>
+            </div>
+            <!-- Monitor de Estado SINTRE -->
+            <div class="canvas-box" id="box-sintre">
+                <div style="position:absolute; top:8px; left:10px; font-size:0.7em; z-index:10; background:rgba(0,0,0,0.7);">ESTADO SINTRE: SUPERFLUIDEZ BOSÓNICA</div>
+                <canvas id="sintre-canvas" width="540" height="320"></canvas>
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="control-panel">
+                <button id="btn-0" class="active" onclick="setMode(0)">1. MODELO 4D (TALADRO FÍSICO)</button>
+                <button id="btn-1" onclick="setMode(1)">2. ACTIVAR DAC RIEMANNIANO (400 GON)</button>
+                <button id="btn-2" onclick="setMode(2)">3. SINCRONÍA SINTRE (LÁMPARA 5D)</button>
+
+                <div class="gauge-container">
+                    <div class="gauge-label">Masa de Arrastre (Hawking):</div>
+                    <div id="mass-val" class="gauge-value danger">12,062.00 t</div>
+
+                    <div class="gauge-label">Resistencia Informacional:</div>
+                    <div id="drag-val" class="gauge-value danger">MÁXIMA (Turbulencia)</div>
+
+                    <div class="gauge-label">Eficiencia Euclídea:</div>
+                    <div id="eff-val" class="gauge-value danger">49.7% (Límite 4D)</div>
+                </div>
+            </div>
+
+            <div class="log-panel" id="logs">
+                [SYSTEM BOOT: HP ELITEBOOK 8440P]<br>
+                > Cargando Kernel Kymera 7... OK<br>
+                > Analizando inercia del Big Bang...<br>
+                > <span class="danger">ALERTA: Masa de Hawking detectada en el colimador.</span>
+            </div>
+        </div>
+
+        <div class="license-footer">
+            <strong>PROPIEDAD INTELECTUAL: FRANCISCO J. ZAPATA GARCÍA (ZAGGI) - KINETIC VISION FORENSIC LAB</strong><br>
+            ESTE SOFTWARE CONVIERTE LA 5D EN REALIDAD OPERATIVA. REGISTROS ANID 32993 / 2024-A-10500.<br>
+            USO BAJO LICENCIA ZAGGI (C) 2026. PROHIBIDA LA REPLICACIÓN DEL ALGORITMO SINTRE.
+        </div>
+    </div>
+
+<script>
+    const hCanvas = document.getElementById('hawking-canvas');
+    const sCanvas = document.getElementById('sintre-canvas');
+    const hCtx = hCanvas.getContext('2d');
+    const sCtx = sCanvas.getContext('2d');
+    const logs = document.getElementById('logs');
+
+    let step = 0;
+    let mode = 0; // 0: Taladro, 1: DAC, 2: Sintre
+    let currentMass = 12062.00;
+
+    function addLog(msg, color="#00ff41") {
+        const d = document.createElement('div');
+        d.style.color = color;
+        d.innerHTML = `> ${msg}`;
+        logs.prepend(d);
+    }
+
+    function setMode(m) {
+        mode = m;
+        document.querySelectorAll('button').forEach((b, i) => b.className = i === m ? 'active' : '');
+
+        const massVal = document.getElementById('mass-val');
+        const dragVal = document.getElementById('drag-val');
+        const effVal = document.getElementById('eff-val');
+
+        if(m === 0) {
+            addLog("MODELO 4D: El colimador actúa como taladro físico.", "#ff3333");
+            addLog("FRICCIÓN: 12,062 toneladas de arrastre detectadas.", "#ff3333");
+            massVal.innerText = "12,062.00 t"; massVal.className = "gauge-value danger";
+            dragVal.innerText = "MÁXIMA (Turbulencia)"; dragVal.className = "gauge-value danger";
+            effVal.innerText = "49.7% (Límite 4D)"; effVal.className = "gauge-value danger";
+        } else if(m === 1) {
+            addLog("DAC RIEMANNIANO: Aplicando métrica 400 gon.", "#ffcc00");
+            addLog("SINTONÍA: Reduciendo masa de Hawking por compensación de fase.", "#ffcc00");
+            massVal.innerText = "4,120.45 t"; massVal.className = "gauge-value warning";
+            dragVal.innerText = "REDUCIDA (Laminar)"; dragVal.className = "gauge-value warning";
+            effVal.innerText = "82.4% (Filtro Activo)"; effVal.className = "gauge-value warning";
+        } else if(m === 2) {
+            addLog("ESTADO SINTRE: Superfluidez Bosónica alcanzada.", "#00ff41");
+            addLog("LÁMPARA 5D: Masa de Hawking neutralizada en el Punto de Minkowski.", "#00ff41");
+            massVal.innerText = "0.00 t (Coherencia)"; massVal.className = "gauge-value success";
+            dragVal.innerText = "NULA (Superfluidez)"; dragVal.className = "gauge-value success";
+            effVal.innerText = "99.99% (Sintropía)"; effVal.className = "gauge-value success";
+        }
+    }
+
+    function draw() {
+        // --- Monitor de Hawking (Fricción vs Masa) ---
+        hCtx.fillStyle = 'rgba(0,0,5,0.2)';
+        hCtx.fillRect(0,0,540,320);
+
+        // Dibujo de la Masa de Arrastre (Círculo de Hawking)
+        let massSize = mode === 0 ? 80 : (mode === 1 ? 30 : 5);
+        let blurSize = mode === 0 ? 40 : 10;
+
+        hCtx.shadowBlur = blurSize;
+        hCtx.shadowColor = mode === 0 ? "#ff3333" : "#00ff41";
+        hCtx.beginPath();
+        hCtx.arc(270, 160, massSize + Math.sin(step)*5, 0, Math.PI*2);
+        hCtx.strokeStyle = mode === 0 ? "#ff3333" : "#00ff41";
+        hCtx.lineWidth = 3;
+        hCtx.stroke();
+        hCtx.shadowBlur = 0;
+
+        // Partículas de arrastre (Entropía)
+        for(let i=0; i< (mode === 0 ? 50 : 5); i++) {
+            let x = (Math.sin(i + step) * 200) + 270;
+            let y = (Math.cos(i * 1.5 + step) * 100) + 160;
+            hCtx.fillStyle = "#ff3333";
+            hCtx.fillRect(x, y, 2, 2);
+        }
+
+        // --- Monitor SINTRE (Onda de Fase) ---
+        sCtx.fillStyle = 'rgba(0,0,0,0.15)';
+        sCtx.fillRect(0,0,540,320);
+
+        sCtx.beginPath();
+        sCtx.lineWidth = 2;
+        sCtx.strokeStyle = mode === 2 ? "#00ff41" : (mode === 1 ? "#ffcc00" : "#333");
+
+        for(let x=0; x<540; x++) {
+            let y;
+            if(mode === 0) {
+                // Caos y Fractura (Taladro)
+                y = 160 + (Math.random()-0.5)*60 + Math.sin(x/10 + step*2)*10;
+            } else if(mode === 1) {
+                // Sintonía DAC
+                y = 160 + Math.sin(x/30 + step)*40 + (Math.random()-0.5)*5;
+            } else {
+                // Superfluidez SINTRE (Recta Crítica)
+                y = 160 + Math.sin(x/50 + step)*100;
+            }
+            if(x===0) sCtx.moveTo(x,y); else sCtx.lineTo(x,y);
+        }
+        sCtx.stroke();
+
+        // Overlay de malla gónica en modo SINTRE
+        if(mode === 2) {
+            sCtx.strokeStyle = 'rgba(0,255,65,0.1)';
+            for(let i=0; i<540; i+=40) {
+                sCtx.beginPath();
+                sCtx.moveTo(i, 0); sCtx.lineTo(i, 320);
+                sCtx.stroke();
+            }
+        }
+
+        step += 0.05;
+        requestAnimationFrame(draw);
+    }
+
+    draw();
+</script>
+</body>
+</html>

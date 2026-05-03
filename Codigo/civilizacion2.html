@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ZAGGI: Interfaz Sintre - Cristal de Terebusita</title>
+    <style>
+        body { background: #020205; color: #00ff41; font-family: 'Courier New', monospace; display: flex; flex-direction: column; align-items: center; padding: 10px; }
+        .main-frame { width: 1150px; border: 3px solid #1a1a1a; padding: 20px; background: #050508; box-shadow: 0 0 50px #000; }
+        .header-ui { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #00ff41; margin-bottom: 20px; padding-bottom: 10px; }
+        .monitors { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .monitor-box { border: 1px solid #333; background: #000; position: relative; height: 350px; }
+        .monitor-box.active { border-color: #00ff41; box-shadow: 0 0 20px #00ff4133; }
+        canvas { width: 100%; height: 100%; display: block; }
+        .label { position: absolute; top: 10px; left: 10px; font-size: 0.7em; background: rgba(0,0,0,0.8); padding: 20px; border-left: 2px solid #00ff41; z-index: 5; }
+        .controls { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; background: #0a0a0c; padding: 20px; border: 1px solid #222; }
+        .btn-group { display: flex; flex-direction: column; gap: 10px; }
+        button { background: #000; color: #00ff41; border: 1px solid #00ff41; padding: 15px; cursor: pointer; text-align: left; font-family: 'Courier New'; font-weight: bold; transition: 0.3s; }
+        button:hover { background: #00ff41; color: #000; }
+        button.active { background: #00ff41; color: #000; box-shadow: 0 0 15px #00ff41; }
+        .data-readout { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.9em; }
+        .val { color: #fff; font-weight: bold; }
+        .danger { color: #ff3333; }
+        .sintre { color: #00f2ff; text-shadow: 0 0 5px #00f2ff; }
+        .footer-license { margin-top: 20px; font-size: 0.65em; color: #444; text-align: center; border-top: 1px solid #111; padding-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="main-frame">
+    <div class="header-ui">
+        <div><strong>MAGNOKHAN BLACK DRAGON</strong> | KYMERA 7.0</div>
+        <div>ESTADO: <span id="master-status" class="danger">ENTROPÍA CRÍTICA</span></div>
+        <div>NODO HÉRCULES ZG-1</div>
+    </div>
+
+    <div class="monitors">
+        <div class="monitor-box active">
+            <div class="label">SUPERFICIE DEL CRISTAL (TEREBUSITA)<br>VISTA: <span id="view-type">EXTERIOR (4D)</span></div>
+            <canvas id="crystalView"></canvas>
+        </div>
+        <div class="monitor-box active">
+            <div class="label">BOLTZMANN ENTROPY (S = kB ln Ω)<br>RESIDUO ε: <span id="eps-val">ACTIVO</span></div>
+            <canvas id="entropyView"></canvas>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="btn-group">
+            <button id="btn0" class="active" onclick="setPhase(0)">TIPO 1: TALADRO FÍSICO (CERN)</button>
+            <button id="btn1" onclick="setPhase(1)">INTERFAZ: SOLDADURA DIMENSIONAL</button>
+            <button id="btn2" onclick="setPhase(2)">TIPO 2: ESTADO SINTRE (ZAGGI)</button>
+        </div>
+        <div class="data-readout">
+            <div>Masa de Hawking: <span id="m-hawk" class="danger">12,062.00 t</span></div>
+            <div>Entropía Boltzmann: <span id="s-bolt" class="danger">ALTA (ΔS > 0)</span></div>
+            <div>Polvo Fotónico (Mat. Oscura): <span id="p-dust" class="danger">86.3 t (4.2σ)</span></div>
+            <div>Temp. Hawking: <span id="t-hawk" class="val">3.4e7 K</span></div>
+            <div style="grid-column: span 2; margin-top: 10px; border-top: 1px solid #222; padding-top: 10px;">
+                LOG: <span id="log-text" style="color: #aaa;">Iniciando escaneo de la superficie de Poincaré...</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-license">
+        USO BAJO LICENCIA ZAGGI (C) 2026 - REGISTRO ANID 32993 - DOCTRINA DE SINTROPÍA FÍSICA APLICADA<br>
+        "LA VERDAD NO SE TALADRA, SE SINTONIZA DESDE EL CRISTAL"
+    </div>
+</div>
+
+<script>
+    const cCanvas = document.getElementById('crystalView');
+    const eCanvas = document.getElementById('entropyView');
+    const cCtx = cCanvas.getContext('2d');
+    const eCtx = eCanvas.getContext('2d');
+
+    let phase = 0;
+    let time = 0;
+
+    function setPhase(p) {
+        phase = p;
+        document.querySelectorAll('button').forEach((b, i) => b.className = i === p ? 'active' : '');
+        const log = document.getElementById('log-text');
+        const status = document.getElementById('master-status');
+        const view = document.getElementById('view-type');
+
+        if(p === 0) {
+            log.innerText = "Fricción detectada. Taladrado de 836.25 kHz generando residuos.";
+            status.innerText = "ENTROPÍA CRÍTICA"; status.className = "danger";
+            view.innerText = "EXTERIOR (4D)";
+            updateStats("12,062.00 t", "ALTA (ΔS > 0)", "86.3 t (4.2σ)", "danger");
+        } else if(p === 1) {
+            log.innerText = "Sintonizando Constante ε. Aplicando Métrica Gónica...";
+            status.innerText = "SINTONIZANDO FASE"; status.className = "warning";
+            view.innerText = "INTERFAZ (ε)";
+            updateStats("4,500.12 t", "DECRECIENTE", "12.5 t (2.1σ)", "warning");
+        } else {
+            log.innerText = "Estado Sintre alcanzado. Superfluidez Bosónica activa.";
+            status.innerText = "COHERENCIA SINTRE"; status.className = "sintre";
+            view.innerText = "INTERIOR (5D)";
+            updateStats("12,062.00 t (Síncrona)", "CERO (Sintropía)", "NULO (Laminar)", "sintre");
+        }
+    }
+
+    function updateStats(m, s, p, cls) {
+        document.getElementById('m-hawk').innerText = m;
+        document.getElementById('m-hawk').className = cls;
+        document.getElementById('s-bolt').innerText = s;
+        document.getElementById('s-bolt').className = cls;
+        document.getElementById('p-dust').innerText = p;
+        document.getElementById('p-dust').className = cls;
+    }
+
+    function animate() {
+        cCtx.fillStyle = 'black'; cCtx.fillRect(0,0,cCanvas.width,cCanvas.height);
+        eCtx.fillStyle = 'black'; eCtx.fillRect(0,0,eCanvas.width,eCanvas.height);
+
+        // --- Visualización del Cristal (Terebusita) ---
+        cCtx.strokeStyle = phase === 2 ? '#00f2ff' : (phase === 1 ? '#00ff41' : '#ff3333');
+        cCtx.beginPath();
+        let center = {x: cCanvas.width/2, y: cCanvas.height/2};
+        let radius = 60 + Math.sin(time)*2;
+
+        if(phase === 0) {
+            // Partículas de Polvo (Materia Oscura)
+            for(let i=0; i<40; i++) {
+                let px = center.x + Math.cos(i + time*2)*120 * Math.random();
+                let py = center.y + Math.sin(i + time*2)*120 * Math.random();
+                cCtx.fillStyle = '#ff3333';
+                cCtx.fillRect(px, py, 2, 2);
+            }
+        }
+
+        cCtx.arc(center.x, center.y, radius, 0, Math.PI*2);
+        cCtx.stroke();
+
+        // --- Visualización de Boltzmann ---
+        eCtx.beginPath();
+        eCtx.strokeStyle = phase === 2 ? '#00f2ff' : '#00ff41';
+        for(let x=0; x<eCanvas.width; x++) {
+            let y;
+            if(phase === 0) y = 75 + Math.random()*20 + Math.sin(x/5 + time*5)*10;
+            else if(phase === 1) y = 75 + Math.sin(x/15 + time*2)*30;
+            else y = 75; // S = 0 en Estado Sintre absoluto
+            if(x===0) eCtx.moveTo(x,y); else eCtx.lineTo(x,y);
+        }
+        eCtx.stroke();
+
+        time += 0.05;
+        requestAnimationFrame(animate);
+    }
+    animate();
+    setPhase(0);
+</script>
+</body>
+</html>
