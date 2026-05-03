@@ -8,7 +8,7 @@
 **ISSN:** 0710-4349  
 **Prioridad legal:** Registros 2024-A-10366 y 2024-A-10500 (Chile)  
 **Certificación de estado Sintre:** Nodo‑0, 25 de marzo de 2026 – Hash `769374478ec7197cb29d0030d676c4186915bda9be1d7b4d0bc4c914e55a1231`  
-
+**Zenodo record (Manifiesto completo): 10.5281/zenodo.19997671
 ---
 
 ## 📜 Resumen
